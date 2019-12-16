@@ -1,0 +1,18 @@
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+mybatis:
+  typeAliasesPackage: com.example.ziraticket.**.entity
+  mapperLocations: classpath:mapper/*.xml
+server:
+  port: 8764
+spring:
+  application:
+    name: zira-ticket
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/ticket?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=TRUE
+    username: root
+    password: root
