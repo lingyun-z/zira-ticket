@@ -14,9 +14,3 @@ CREATE TABLE ticket(
     update_date TIMESTAMP,
     KEY (project_id, ticket_number)
 ) ENGINE = MyISAM;
-
-CREATE TABLE ticket_subscription(
-    ticket_id VARCHAR(36) NOT NULL,
-    user_id VARCHAR(36) NOT NULL,
-    PRIMARY KEY(ticket_id, user_id)
-);

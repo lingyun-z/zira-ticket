@@ -1,10 +1,8 @@
 package com.example.ziraticket.controller;
 
 import com.example.ziraticket.entity.Ticket;
-import com.example.ziraticket.entity.dto.TicketName;
-import com.example.ziraticket.service.TicketNotificationService;
 import com.example.ziraticket.service.TicketService;
-import com.example.ziraticket.service.TicketSubscriptionService;
+import com.example.ziraticket.entity.dto.PageCount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +20,7 @@ public class TicketController {
   @Autowired
   private TicketService ticketService;
 
-  @Autowired
-  private TicketSubscriptionService subscriptionService;
-
-//  @Autowired
-//  private TicketNotificationService notificationService;
-
-  @GetMapping("/page")
+  @GetMapping
   public ResponseEntity<List<Ticket>> getPagedTicket(int pageSize, int pageNum, String projectId) {
     List<Ticket> result;
     try {
@@ -38,44 +30,7 @@ public class TicketController {
       result = ticketService.getPagedTickets(pageSize, start, projectId);
     } catch (Exception e) {
       logger.error(e.getMessage());
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    return new ResponseEntity<>(result, HttpStatus.OK);
-  }
-
-  @GetMapping("/{id}")
-  public ResponseEntity<Ticket> getTicketById(@PathVariable("id") String id) {
-    Ticket result;
-    try {
-      result = ticketService.getTicketById(id);
-    } catch (Exception e) {
-      logger.error(e.getMessage());
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    return new ResponseEntity<>(result, HttpStatus.OK);
-  }
-
-  @GetMapping
-  public ResponseEntity<Ticket> getTicketByTicketName(@RequestBody TicketName ticketName) {
-    Ticket result;
-    try {
-      logger.info("getTicketByTicketName ticketName: {}", ticketName);
-      result = ticketService.getTicketByTicketName(ticketName);
-    } catch (Exception e) {
-      logger.error(e.getMessage());
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    return new ResponseEntity<>(result, HttpStatus.OK);
-  }
-
-  @GetMapping("/subticket/{id}")
-  public ResponseEntity<List<Ticket>> getSubTicket(@PathVariable("id") String id) {
-    List<Ticket> result;
-    try {
-      result = ticketService.getSubTicket(id);
-    } catch (Exception e) {
-      logger.error(e.getMessage());
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
@@ -87,7 +42,31 @@ public class TicketController {
       result = ticketService.addTicket(ticket);
     } catch (Exception e) {
       logger.error(e.getMessage());
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<Ticket> getTicketById(@PathVariable("id") String id) {
+    Ticket result;
+    try {
+      result = ticketService.getTicketById(id);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @GetMapping("/{projectId}/{ticketNumber}")
+  public ResponseEntity<Ticket> getTicketByTicketName(@PathVariable("projectId") String projectId, @PathVariable("ticketNumber") String ticketNumber) {
+    Ticket result;
+    try {
+      result = ticketService.getTicketByTicketName(projectId, ticketNumber);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
@@ -100,7 +79,31 @@ public class TicketController {
       result = ticketService.updateTicket(ticket);
     } catch (Exception e) {
       logger.error(e.getMessage());
-      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
+
+  @GetMapping("/count/{projectId}")
+  public ResponseEntity<PageCount> getTicketCount(@PathVariable("projectId") String projectId) {
+    PageCount count;
+    try {
+      count = ticketService.getTicketCount(projectId);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<>(count, HttpStatus.OK);
+  }
+
+  @GetMapping("/subticket/{id}")
+  public ResponseEntity<List<Ticket>> getSubTicket(@PathVariable("id") String id) {
+    List<Ticket> result;
+    try {
+      result = ticketService.getSubTicket(id);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     return new ResponseEntity<>(result, HttpStatus.OK);
   }

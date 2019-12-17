@@ -1,14 +1,14 @@
 package com.example.ziraticket.service.impl;
 
 import com.example.ziraticket.dao.TicketMapper;
+import com.example.ziraticket.entity.dto.PageCount;
 import com.example.ziraticket.entity.Ticket;
-import com.example.ziraticket.entity.dto.TicketName;
 import com.example.ziraticket.service.TicketService;
-import com.example.ziraticket.service.TicketSubscriptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,17 +19,15 @@ public class TicketServiceImpl implements TicketService {
   @Autowired
   private TicketMapper ticketMapper;
 
-  @Autowired
-  private TicketSubscriptionService subscriptionService;
-
   @Override
   public Ticket getTicketById(String id) {
+    logger.info("getTicketById id: {}", id);
     return ticketMapper.getTicketById(id);
   }
 
   @Override
-  public Ticket getTicketByTicketName(TicketName ticketName) {
-    return ticketMapper.getTicketByTicketName(ticketName);
+  public Ticket getTicketByTicketName(String projectId, String ticketNumber) {
+    return ticketMapper.getTicketByTicketName(projectId, ticketNumber);
   }
 
   @Override
@@ -39,26 +37,33 @@ public class TicketServiceImpl implements TicketService {
   }
 
   @Override
+  public PageCount getTicketCount(String projectId) {
+    logger.info("getTicketCount projectId: {}", projectId);
+    var count = ticketMapper.getTicketCount(projectId);
+    return new PageCount(count);
+  }
+
+  @Override
   public List<Ticket> getSubTicket(String id) {
     logger.info("getSubTicket id: {}", id);
     return ticketMapper.getSubTicket(id);
   }
 
   @Override
+  @Transactional
   public Ticket addTicket(Ticket ticket) {
     logger.info("addTicket ticket: {}", ticket);
     ticketMapper.addTicket(ticket);
-    subscriptionService.subscribe(ticket.getId(), ticket.getCreatedBy());
-    return ticket;
+    return ticketMapper.getTicketById(ticket.getId());
   }
 
   @Override
+  @Transactional
   public Ticket updateTicket(Ticket ticket) {
     logger.info("updateTicket ticket: {}", ticket);
-    if (ticketMapper.updateTicket(ticket) == 1) {
-//      TODO: get user from token
+    var preTicket = ticketMapper.getTicketById(ticket.getId());
 
-//      subscriptionService.subscribe(ticket.getId(), "ZLY");
+    if (ticketMapper.updateTicket(ticket) == 1) {
       return ticketMapper.getTicketById(ticket.getId());
     }
     return null;
