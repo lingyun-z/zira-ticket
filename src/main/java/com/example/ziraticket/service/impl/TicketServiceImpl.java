@@ -2,7 +2,7 @@ package com.example.ziraticket.service.impl;
 
 import com.example.ziraticket.dao.TicketMapper;
 import com.example.ziraticket.entity.Ticket;
-import com.example.ziraticket.entity.dto.PagedTicket;
+import com.example.ziraticket.entity.dto.TicketName;
 import com.example.ziraticket.service.TicketService;
 import com.example.ziraticket.service.TicketSubscriptionService;
 import org.slf4j.Logger;
@@ -25,6 +25,11 @@ public class TicketServiceImpl implements TicketService {
   @Override
   public Ticket getTicketById(String id) {
     return ticketMapper.getTicketById(id);
+  }
+
+  @Override
+  public Ticket getTicketByTicketName(TicketName ticketName) {
+    return ticketMapper.getTicketByTicketName(ticketName);
   }
 
   @Override

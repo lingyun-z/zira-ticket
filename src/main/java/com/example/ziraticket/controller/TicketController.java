@@ -1,6 +1,7 @@
 package com.example.ziraticket.controller;
 
 import com.example.ziraticket.entity.Ticket;
+import com.example.ziraticket.entity.dto.TicketName;
 import com.example.ziraticket.service.TicketNotificationService;
 import com.example.ziraticket.service.TicketService;
 import com.example.ziraticket.service.TicketSubscriptionService;
@@ -27,7 +28,7 @@ public class TicketController {
 //  @Autowired
 //  private TicketNotificationService notificationService;
 
-  @GetMapping
+  @GetMapping("/page")
   public ResponseEntity<List<Ticket>> getPagedTicket(int pageSize, int pageNum, String projectId) {
     List<Ticket> result;
     try {
@@ -54,7 +55,18 @@ public class TicketController {
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 
-
+  @GetMapping
+  public ResponseEntity<Ticket> getTicketByTicketName(@RequestBody TicketName ticketName) {
+    Ticket result;
+    try {
+      logger.info("getTicketByTicketName ticketName: {}", ticketName);
+      result = ticketService.getTicketByTicketName(ticketName);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<>(result, HttpStatus.OK);
+  }
 
   @GetMapping("/subticket/{id}")
   public ResponseEntity<List<Ticket>> getSubTicket(@PathVariable("id") String id) {

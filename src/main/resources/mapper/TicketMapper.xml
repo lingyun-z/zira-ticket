@@ -21,6 +21,13 @@
         ticket_id, ticket_number, project_id, parent_id, title, estimate, type, status, description, created_by, assignee, created_date, update_date
     </sql>
 
+    <select id="getTicketByTicketName" resultMap="TicketMap">
+        SELECT
+        <include refid="ticket"/>
+        FROM ticket
+        WHERE project_id = #{projectId} AND ticket_number = #{number}
+    </select>
+
     <select id="getTicketById" resultMap="TicketMap">
         SELECT
         <include refid="ticket"/>
