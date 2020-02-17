@@ -20,8 +20,13 @@ public class TicketController {
   @Autowired
   private TicketService ticketService;
 
+<<<<<<< Updated upstream
   @GetMapping
   public ResponseEntity<List<Ticket>> getPagedTicket(int pageSize, int pageNum, String projectId) {
+=======
+  @GetMapping("/project/{projectName}")
+  public ResponseEntity<List<Ticket>> getPagedTicket(@PathVariable("projectName") String projectName, int pageSize, int pageNum) {
+>>>>>>> Stashed changes
     List<Ticket> result;
     try {
       pageSize = pageSize > 0 ? pageSize : 20;
