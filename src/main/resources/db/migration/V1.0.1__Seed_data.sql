@@ -1,0 +1,6 @@
+INSERT INTO ticket (ticket_id, project_name, parent_id, title, estimate, status, type, description, created_by, assignee, created_date)
+VALUES
+('5aaa0819-2efc-11ea-b286-0242ac110002', 'ZIRA', null, 'ZIRA start', 1, 'dev', 'story', 'you should do something', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now()),
+('baaea684-2efc-11ea-b286-0242ac110002', 'ZIRA', '5aaa0819-2efc-11ea-b286-0242ac110002', 'ZIRA GraphQL', 2, 'dev', 'task', 'you should do some GraphQL', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now()),
+('22eadf26-2efd-11ea-b286-0242ac110002', 'ZIRA', '5aaa0819-2efc-11ea-b286-0242ac110002', 'ZIRA user', 3, 'dev', 'task', 'you should do some user', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now()),
+('f9edc96c-2f6a-11ea-b286-0242ac110002', 'ZIRA', '22eadf26-2efd-11ea-b286-0242ac110002', 'ZIRA ticket', 4, 'dev', 'sub-task', 'you should do some ticket', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now())

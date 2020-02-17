@@ -8,13 +8,13 @@ import java.util.List;
 public interface TicketMapper {
   Ticket getTicketById(String id);
 
-  Ticket getTicketByTicketName(@Param("projectId") String projectId, @Param("number") String ticketNumber);
+  Ticket getTicketByTicketName(@Param("projectName") String projectName, @Param("number") String ticketNumber);
 
-  List<Ticket> getPagedTickets(@Param("pageSize") int pageSize,@Param("start") int start, @Param("projectId") String projectId);
+  List<Ticket> getPagedTickets(@Param("pageSize") int pageSize,@Param("start") int start, @Param("projectName") String projectName);
 
   List<Ticket> getSubTicket(String id);
 
-  int getTicketCount(String projectId);
+  int getTicketCount(String projectName);
 
   int addTicket(Ticket ticket);
 

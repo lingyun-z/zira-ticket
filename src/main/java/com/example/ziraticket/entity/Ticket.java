@@ -3,7 +3,7 @@ package com.example.ziraticket.entity;
 public class Ticket {
   private String id;
   private String number;
-  private String projectId;
+  private String projectName;
   private String parentId;
   private String title;
   private String type;
@@ -18,10 +18,10 @@ public class Ticket {
   public Ticket() {
   }
 
-  public Ticket(String id, String number, String projectId, String parentId, String title, String type, String status, Integer estimate, String description, String createdBy, String assignee, String createdDate, String updateDate) {
+  public Ticket(String id, String number, String projectName, String parentId, String title, String type, String status, Integer estimate, String description, String createdBy, String assignee, String createdDate, String updateDate) {
     this.id = id;
     this.number = number;
-    this.projectId = projectId;
+    this.projectName = projectName;
     this.parentId = parentId;
     this.title = title;
     this.type = type;
@@ -39,7 +39,7 @@ public class Ticket {
     return "Ticket{" +
             "id='" + id + '\'' +
             ", number='" + number + '\'' +
-            ", projectId='" + projectId + '\'' +
+            ", projectName='" + projectName + '\'' +
             ", parentId='" + parentId + '\'' +
             ", title='" + title + '\'' +
             ", type='" + type + '\'' +
@@ -60,13 +60,13 @@ public class Ticket {
   public void setId(String id) {
     this.id = id;
   }
-
-  public String getProjectId() {
-    return projectId;
+  
+  public String getProjectName() {
+    return projectName;
   }
 
-  public void setProjectId(String projectId) {
-    this.projectId = projectId;
+  public void setProjectName(String projectName) {
+    this.projectName = projectName;
   }
 
   public String getParentId() {

@@ -4,7 +4,7 @@
     <resultMap id="TicketMap" type="com.example.ziraticket.entity.Ticket">
         <id column="ticket_id" property="id" jdbcType="VARCHAR"/>
         <result column="ticket_number" property="number" jdbcType="VARCHAR"/>
-        <result column="project_id" property="projectId" jdbcType="VARCHAR"/>
+        <result column="project_name" property="projectName" jdbcType="VARCHAR"/>
         <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="estimate" property="estimate" jdbcType="SMALLINT"/>
@@ -18,14 +18,14 @@
     </resultMap>
 
     <sql id="ticket">
-        ticket_id, ticket_number, project_id, parent_id, title, estimate, type, status, description, created_by, assignee, created_date, update_date
+        ticket_id, ticket_number, project_name, parent_id, title, estimate, type, status, description, created_by, assignee, created_date, update_date
     </sql>
 
     <select id="getTicketByTicketName" resultMap="TicketMap">
         SELECT
         <include refid="ticket"/>
         FROM ticket
-        WHERE project_id = #{projectId} AND ticket_number = #{number}
+        WHERE project_name = #{projectName} AND ticket_number = #{number}
     </select>
 
     <select id="getTicketById" resultMap="TicketMap">
@@ -39,7 +39,7 @@
         SELECT
         <include refid="ticket"/>
         FROM ticket
-        WHERE project_id = #{projectId}
+        WHERE project_name = #{projectName}
         LIMIT #{pageSize}
         OFFSET #{start}
     </select>
@@ -52,7 +52,7 @@
     </select>
 
     <select id="getTicketTotalPage" resultType="int">
-        SELECT COUNT(*) FROM ticket WHERE project_id = #{projectId}
+        SELECT COUNT(*) FROM ticket WHERE project_name = #{projectName}
     </select>
 
     <update id="updateTicket" parameterType="com.example.ziraticket.entity.Ticket">
@@ -84,15 +84,15 @@
         WHERE ticket_id = #{id}
     </update>
 
-    <insert id="addTicket" parameterType="com.example.ziraticket.entity.Ticket" useGeneratedKeys="true" keyProperty="number">
+    <insert id="addTicket" parameterType="com.example.ziraticket.entity.Ticket">
         <selectKey resultType="java.lang.String" order="BEFORE" keyProperty="id">
             SELECT uuid()
         </selectKey>
         INSERT INTO ticket
         <trim prefix="(" suffix=")" suffixOverrides="," >
             ticket_id,
-            <if test="projectId != null">
-                project_id,
+            <if test="projectName != null">
+                project_name,
             </if>
             <if test="parentId != null">
                 parent_id,
@@ -123,8 +123,8 @@
 
         <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
             #{id},
-            <if test="projectId != null">
-                #{projectId},
+            <if test="projectName != null">
+                #{projectName},
             </if>
             <if test="parentId != null">
                 #{parentId},

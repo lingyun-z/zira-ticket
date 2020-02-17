@@ -1,7 +1,6 @@
 package com.example.ziraticket.service.impl;
 
 import com.example.ziraticket.dao.TicketMapper;
-import com.example.ziraticket.entity.dto.PageCount;
 import com.example.ziraticket.entity.Ticket;
 import com.example.ziraticket.service.TicketService;
 import org.slf4j.Logger;
@@ -26,21 +25,20 @@ public class TicketServiceImpl implements TicketService {
   }
 
   @Override
-  public Ticket getTicketByTicketName(String projectId, String ticketNumber) {
-    return ticketMapper.getTicketByTicketName(projectId, ticketNumber);
+  public Ticket getTicketByTicketName(String projectName, String ticketNumber) {
+    return ticketMapper.getTicketByTicketName(projectName, ticketNumber);
   }
 
   @Override
-  public List<Ticket> getPagedTickets(int pageSize, int start, String projectId) {
-    logger.info("getPagedTickets pageSize: {} start: {} projectId: {}", pageSize, start, projectId);
-    return ticketMapper.getPagedTickets(pageSize, start, projectId);
+  public List<Ticket> getPagedTickets(int pageSize, int start, String projectName) {
+    logger.info("getPagedTickets pageSize: {} start: {} projectName: {}", pageSize, start, projectName);
+    return ticketMapper.getPagedTickets(pageSize, start, projectName);
   }
 
   @Override
-  public PageCount getTicketCount(String projectId) {
-    logger.info("getTicketCount projectId: {}", projectId);
-    var count = ticketMapper.getTicketCount(projectId);
-    return new PageCount(count);
+  public Integer getTicketCount(String projectName) {
+    logger.info("getTicketCount projectName: {}", projectName);
+    return ticketMapper.getTicketCount(projectName);
   }
 
   @Override
