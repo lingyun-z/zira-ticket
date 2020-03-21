@@ -1,11 +1,11 @@
-version: "2"
+version: '2'
 services:
   zira-ticket:
     restart: always
     image: zira-ticket
     container_name: zira-ticket
     expose:
-      - "80"
+      - '80'
     networks:
       - zira
 networks:
