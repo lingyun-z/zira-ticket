@@ -2,6 +2,12 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    enabled: true
+
 mybatis:
   typeAliasesPackage: com.example.ziraticket.**.entity
   mapperLocations: classpath:mapper/*.xml
@@ -15,6 +21,35 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://localhost:3306/ticket?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=TRUE
+    url: jdbc:mysql://101.132.169.36:3306/ticket?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=TRUE
     username: root
     password: root
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health","beans","env","prometheus","info","metrics"]
+      base-path: /
+  #      enabled-by-default: true
+  endpoint:
+    auditevents:
+      enabled: true
+      cache:
+        time-to-live: 10s
+    beans:
+      enabled: true
+    conditions:
+      enabled: true
+    configprops:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    tags:
+      application:
+        ${spring:application:name}
+    export:
+      prometheus:
+        pushgateway:
+          base-url: 101.132.169.36:9091
+          enabled: true
