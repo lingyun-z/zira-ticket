@@ -1,10 +1,5 @@
 INSERT INTO ticket (ticket_id, project_name, parent_id, title, estimate, status, type, description, created_by, assignee, created_date)
 VALUES
-('5aaa0819-2efc-11ea-b286-0242ac110002', 'ZIRA', null, 'ZIRA start', 1, 'dev', 'story', 'you should do something', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now()),
-('baaea684-2efc-11ea-b286-0242ac110002', 'ZIRA', '5aaa0819-2efc-11ea-b286-0242ac110002', 'ZIRA GraphQL', 2, 'dev', 'task', 'you should do some GraphQL', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now()),
-('22eadf26-2efd-11ea-b286-0242ac110002', 'ZIRA', '5aaa0819-2efc-11ea-b286-0242ac110002', 'ZIRA user', 3, 'dev', 'task', 'you should do some user', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now()),
-('f9edc96c-2f6a-11ea-b286-0242ac110002', 'ZIRA', '22eadf26-2efd-11ea-b286-0242ac110002', 'ZIRA ticket', 4, 'dev', 'sub-task', 'you should do some ticket', '1bd358a8-24ac-11ea-b286-0242ac110002', '1bd358a8-24ac-11ea-b286-0242ac110002', now()),
-
 ('aa3458ca-6dc4-11ea-b3ba-0242ac140002', 'ZIRA', null,'Ticket管理功能',7,'ready','story','完成 Ticket service 中的接口以及其Graphql的接口和Web界面','1bd358a8-24ac-11ea-b286-0242ac110002',null ,now()),
 ('f2ea347b-6dc5-11ea-b3ba-0242ac140002', 'ZIRA','aa3458ca-6dc4-11ea-b3ba-0242ac140002','Ticket管理 前端',3,'ready','task','完成 Ticket前端开发','502f273d-3061-11ea-921f-0242ac110002',null ,now()),
 ('adc25757-6dc6-11ea-b3ba-0242ac140002', 'ZIRA','f2ea347b-6dc5-11ea-b3ba-0242ac140002','Ticket管理 webUI ',1,'ready','sub-task','完成 Ticket UI 页面编写','502f273d-3061-11ea-921f-0242ac110002','502f273d-3061-11ea-921f-0242ac110002' ,now()),
@@ -16,8 +11,8 @@ VALUES
 ('c0565202-6dcb-11ea-b3ba-0242ac140002', 'ZIRA', null,'User 管理功能',7,'ready','story','完成 User service 中的接口以及其Graphql的接口和Web界面','1bd358a8-24ac-11ea-b286-0242ac110002',null ,now()),
 ('d4553c53-6dcb-11ea-b3ba-0242ac140002', 'ZIRA','c0565202-6dcb-11ea-b3ba-0242ac140002','User 管理 前端',3,'ready','task','完成 User 前端开发','502f273d-3061-11ea-921f-0242ac110002',null ,now()),
 ('f1ecc761-6dcb-11ea-b3ba-0242ac140002', 'ZIRA','d4553c53-6dcb-11ea-b3ba-0242ac140002','User 管理 webUI ',1,'ready','sub-task','完成 User UI 页面编写','502f273d-3061-11ea-921f-0242ac110002','502f273d-3061-11ea-921f-0242ac110002' ,now()),
-('f8572c85-6dcb-11ea-b3ba-0242ac140002', 'ZIRA','d4553c53-6dcb-11ea-b3ba-0242ac140002','User管理 前端逻辑',2,'ready','sub-task','完成 User 前端逻辑编写','502f273d-3061-11ea-921f-0242ac110002','502f273d-3061-11ea-921f-0242ac110002' ,now()),
-('d4553c53-6dcb-11ea-b3ba-0242ac140002', 'ZIRA','c0565202-6dcb-11ea-b3ba-0242ac140002','User管理 后端',4,'ready','task','完成 User Service 、Graphql Service 编写','1bd358a8-24ac-11ea-b286-0242ac110002','1bd358a8-24ac-11ea-b286-0242ac110002' ,now()),
+('f8572c85-6dcb-11ea-b3ba-0242ac140002', 'ZIRA','d4553c53-6dcb-11ea-b3ba-0242ac140002','User 管理 前端逻辑',2,'ready','sub-task','完成 User 前端逻辑编写','502f273d-3061-11ea-921f-0242ac110002','502f273d-3061-11ea-921f-0242ac110002' ,now()),
+('d4553c53-6dcb-11ea-b3ba-0242ac140002', 'ZIRA','c0565202-6dcb-11ea-b3ba-0242ac140002','User 管理 后端',4,'ready','task','完成 User Service 、Graphql Service 编写','1bd358a8-24ac-11ea-b286-0242ac110002','1bd358a8-24ac-11ea-b286-0242ac110002' ,now()),
 ('feabd53e-6dcb-11ea-b3ba-0242ac140002', 'ZIRA','d4553c53-6dcb-11ea-b3ba-0242ac140002','User Service管理',2,'ready','sub-task','完成 User Service 后端逻辑编写','1bd358a8-24ac-11ea-b286-0242ac110002','1bd358a8-24ac-11ea-b286-0242ac110002' ,now()),
 ('06047ed6-6dcc-11ea-b3ba-0242ac140002', 'ZIRA','d4553c53-6dcb-11ea-b3ba-0242ac140002','Graphql Service管理',2,'ready','sub-task','完成 Graphql Service 后端逻辑编写','1bd358a8-24ac-11ea-b286-0242ac110002','1bd358a8-24ac-11ea-b286-0242ac110002' ,now()),
 
