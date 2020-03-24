@@ -4,8 +4,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     healthcheck:
       enabled: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
     enabled: true
 
 mybatis:
@@ -21,7 +19,7 @@ spring:
   profiles:
     active: local
   datasource:
-    url: jdbc:mysql://101.132.169.36:3306/ticket?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=TRUE
+    url: jdbc:mysql://localhost:3306/ticket?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=TRUE
     username: root
     password: root
 management:
